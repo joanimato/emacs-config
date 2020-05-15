@@ -1,0 +1,294 @@
+#+TITLE: Emacs configuration file
+
+* Theme 
+
+Theme configuration 
+
+I have a few options, for easy switching. 
+
+#+BEGIN_SRC emacs-lisp
+(if (display-graphic-p)
+(use-package doom-themes
+  :ensure t
+;;  :config (load-theme 'doom-gruvbox) ;; divider ok, but comments too pale
+  :config (load-theme 'doom-dark+)
+;;  :config (load-theme 'doom-acario-dark) ;; duvider ok, but not great colors.
+;;  :config (load-theme 'doom-ephemeral) ;; looks reasonable, but too dark. not great on gui.
+;;  :config (load-theme 'doom-laserwave)
+;;  :config (load-theme 'doom-molokai)
+;;  :config (load-theme 'doom-monokai-pro)
+;;  :config (load-theme 'doom-sourcerer)
+))
+
+(unless (display-graphic-p) (load-theme 'wheatgrass))
+#+END_SRC
+
+* Spaceline
+
+Modeline inspired by the spacemacs distribution
+
+#+BEGIN_SRC emacs-lisp
+;; enable spacemacs mode-line
+(use-package spaceline
+  :ensure t
+  :config
+  (require 'spaceline-config)
+;;    (setq spaceline-buffer-encoding-abbrev-p nil)
+;;    (setq spaceline-line-column-p nil)
+;;    (setq spaceline-line-p nil)
+;;    (setq powerline-default-separator (quote arrow))
+      (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+    (spaceline-emacs-theme)
+;;    (spaceline-spacemacs-theme)
+)
+#+END_SRC
+
+
+* Doom modeline (off)
+
+If necessary, doom's modeline can be used (not activated now)
+
+#+BEGIN_SRC emacs-lisp
+;; (use-package doom-modeline
+;;   :ensure t
+;;   :init (doom-modeline-mode 1))
+#+END_SRC
+
+
+* All the icons package
+
+I don't think this is used, but it's good to have it, just in case
+
+#+BEGIN_SRC emacs-lisp
+(use-package all-the-icons
+  :ensure t)
+#+END_SRC
+
+
+* Which key passage
+
+This displays completion options when you type emacs shortcuts. 
+
+#+BEGIN_SRC emacs-lisp
+(use-package which-key
+  :ensure t
+  :config (which-key-mode))
+#+END_SRC
+
+
+* Evil Mode ( ͡° ͜ʖ ͡°)
+
+This activates the emacs evil mode, which allows most vim keybindings
+
+emacs keybindings are also enabled in INSERT state. 
+
+#+BEGIN_SRC emacs-lisp
+;; EVIL mode buahhahahaha
+(use-package evil
+  :ensure t
+  :init 
+  (setq evil-disable-insert-state-bindings t)
+;;  (setq evil-mode-line-format 'before)
+  :config (evil-mode)
+)
+;;(setq-default mode-line-format 'before)
+#+END_SRC
+
+* Org-mode config
+
+** Org bullets
+
+fancy org-bullets
+
+#+BEGIN_SRC emacs-lisp
+;; Org bullets
+(use-package org-bullets
+  :ensure t
+  :hook (org-mode . org-bullets-mode)
+)
+#+END_SRC
+
+** Org indent mode
+
+#+BEGIN_SRC emacs-lisp
+;; Add org indent mode
+(add-hook 'org-mode-hook 'org-indent-mode)
+#+END_SRC
+
+** Line wrapping in org-mode
+
+#+BEGIN_SRC emacs-lisp
+(add-hook 'org-mode-hook 
+          '(lambda () (visual-line-mode 1)))
+#+END_SRC
+
+* Minor fixes
+
+** Line and column numbers
+
+#+BEGIN_SRC emacs-lisp
+(setq line-number-mode t)
+(setq column-number-mode t)
+#+END_SRC
+
+** Electric pair mode
+
+Automatically pair matching parenthesis ()
+
+#+BEGIN_SRC emacs-lisp 
+;; electric pair mode
+(electric-pair-mode t)
+#+END_SRC
+
+** color code different parenthesis
+
+#+BEGIN_SRC emacs-lisp
+;; color code parenthesis
+(use-package rainbow-delimiters
+  :ensure t
+  :init 
+  (add-hook 'prod-mode-hook #'rainbow-delimiters-mode)
+)
+#+END_SRC
+
+** Scrolling behavior
+
+Scroll 1 line at a time.
+
+#+BEGIN_SRC emacs-lisp
+;; Change scrolling behavior
+(setq scroll-conservatively 100)
+#+END_SRC
+
+** Disable bell sound
+
+#+BEGIN_SRC emacs-lisp
+;; Disable bell sound
+(setq ring-bell-function 'ignore)
+#+END_SRC
+
+** Highlight cursor line
+
+#+BEGIN_SRC emacs-lisp
+;; Highlite cursor line
+(global-hl-line-mode t)
+#+END_SRC
+
+** Disable auto-indent mode(electric indent mode)
+
+#+BEGIN_SRC emacs-lisp
+;; disable auto-indent mode
+(when (fboundp 'electric-indent-mode) (electric-indent-mode -1))
+#+END_SRC
+
+** Disable emacs startup screen
+
+#+BEGIN_SRC emacs-lisp
+;; Disable startup screen.
+(setq inhibit-startup-screen t)
+#+END_SRC
+
+** Enable ibuffer
+
+#+BEGIN_SRC emacs-lisp
+;; enable ibuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+#+END_SRC
+
+** Follow window splits
+
+Make cursor go to new window after a split
+
+#+BEGIN_SRC emacs-lisp
+(defun split-and-follow-horizontally ()
+  (interactive)
+  (split-window-below)
+  (balance-windows)
+  (other-window 1))
+(global-set-key (kbd "C-x 2") 'split-and-follow-horizontally)
+
+(defun split-and-follow-vertically ()
+  (interactive)
+  (split-window-right)
+  (balance-windows)
+  (other-window 1))
+(global-set-key (kbd "C-x 3") 'split-and-follow-vertically)
+#+END_SRC
+
+* IDO-mode package (currently disabled)
+
+This is the emacs default alternative to ivy. Disabled. 
+
+#+BEGIN_SRC emacs-lisp
+;; enable IDO mode :: alternative to ivy, below.
+;; (setq ido-enable-flex-matching nil)
+;; (setq ido-create-new-buffer 'always)
+;; (setq ido-everywhere t)
+;; (ido-mode 1)
+
+;; ;; enable IDO vertical mode
+;; (use-package ido-vertical-mode
+;;   :ensure t
+;;   :init (ido-vertical-mode 1))
+
+;; ;; Enable smex : like IDO but for M-x
+;; (use-package smex
+;;   :ensure t
+;;   :init (smex-initialize)
+;;   :bind ("M-x" . smex)
+;; )
+#+END_SRC
+
+* IVY and swiper
+
+For completion of file and buffer selection, etc....
+
+swiper is a better search package (C-s)
+
+#+BEGIN_SRC emacs-lisp
+;; Ivy for completion. 
+(use-package ivy
+  :ensure t
+  :config (ivy-mode 1)
+)
+
+;; swiper for faster search
+(use-package swiper
+  :ensure t
+  :bind ("C-s" . swiper)
+)
+#+END_SRC
+
+* Flyspell (spellcheck)
+
+#+BEGIN_SRC emacs-lisp
+(use-package flyspell
+   :ensure t
+)
+#+END_SRC
+
+* Programing specifics
+
+** Fortran 
+
+GAMESS uses src for F77 files.
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'auto-mode-alist '("\\.src\\'" . fortran-mode))
+
+;; setup files with .f90 to be read as f90
+(add-to-list 'auto-mode-alist '("\\.f90\\'" . f90-mode))
+(add-to-list 'auto-mode-alist '("\\.F90\\'" . f90-mode))
+#+END_SRC
+
+
+
+
+
+
+
+
+
+
+
+
