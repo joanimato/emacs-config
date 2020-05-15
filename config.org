@@ -20,7 +20,8 @@ I have a few options, for easy switching.
 ;;  :config (load-theme 'doom-sourcerer)
 ))
 
-(unless (display-graphic-p) (load-theme 'wheatgrass))
+;; (unless (display-graphic-p) (load-theme 'wheatgrass))
+(unless (display-graphic-p) (load-theme 'wombat))
 #+END_SRC
 
 * Spaceline
@@ -31,15 +32,25 @@ Modeline inspired by the spacemacs distribution
 ;; enable spacemacs mode-line
 (use-package spaceline
   :ensure t
+  :init 
+  (progn 
+  ;; size of modeline
+     (setq powerline-height 20)
+     (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
   :config
   (require 'spaceline-config)
 ;;    (setq spaceline-buffer-encoding-abbrev-p nil)
 ;;    (setq spaceline-line-column-p nil)
 ;;    (setq spaceline-line-p nil)
 ;;    (setq powerline-default-separator (quote arrow))
-      (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
-    (spaceline-emacs-theme)
-;;    (spaceline-spacemacs-theme)
+;;  (spaceline-emacs-theme)
+  (spaceline-spacemacs-theme)
+  (setq
+;;      spaceline-buffer-encoding-abbrev-p nil
+        spaceline-window-numbers-unicode t
+        )
+;;        spaceline-minor-modes-separator nil)
+        (powerline-reset)
 )
 #+END_SRC
 
