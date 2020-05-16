@@ -275,6 +275,9 @@ swiper is a better search package (C-s)
 #+BEGIN_SRC emacs-lisp
 (use-package flyspell
    :ensure t
+   :hook 
+   (org-mode . flyspell-mode)
+   (prog-mode . flyspell-prog-mode)     
 )
 #+END_SRC
 
