@@ -21,7 +21,8 @@ I have a few options, for easy switching.
 ))
 
 ;; (unless (display-graphic-p) (load-theme 'wheatgrass))
-(unless (display-graphic-p) (load-theme 'wombat))
+;; (unless (display-graphic-p) (load-theme 'wombat))
+(unless (display-graphic-p) (load-theme 'tsdh-dark))
 #+END_SRC
 
 * Spaceline
@@ -29,42 +30,50 @@ I have a few options, for easy switching.
 Modeline inspired by the spacemacs distribution
 
 #+BEGIN_SRC emacs-lisp
-;; enable spacemacs mode-line
-(use-package spaceline
-  :ensure t
-  :init 
-  (progn 
-  ;; size of modeline
-     (setq powerline-height 20)
-     (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
-  :config
-  (require 'spaceline-config)
-;;    (setq spaceline-buffer-encoding-abbrev-p nil)
-;;    (setq spaceline-line-column-p nil)
-;;    (setq spaceline-line-p nil)
-;;    (setq powerline-default-separator (quote arrow))
-;;  (spaceline-emacs-theme)
-  (spaceline-spacemacs-theme)
-  (setq
-;;      spaceline-buffer-encoding-abbrev-p nil
-        spaceline-window-numbers-unicode t
-        )
-;;        spaceline-minor-modes-separator nil)
-        (powerline-reset)
-)
-#+END_SRC
+  ;; enable spacemacs mode-line
+  (use-package spaceline
+    :ensure t
+    :init 
+    (progn 
+    ;; size of modeline
+       (setq powerline-height 20)
+       (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
+    :config
+    (require 'spaceline-config)
+  ;;    (setq spaceline-buffer-encoding-abbrev-p nil)
+  ;;    (setq spaceline-line-column-p nil)
+  ;;    (setq spaceline-line-p nil)
+  ;;    (setq powerline-default-separator (quote arrow))
+  ;;  (spaceline-emacs-theme)
+    (spaceline-spacemacs-theme)
+    (setq
+  ;;      spaceline-buffer-encoding-abbrev-p nil
+          spaceline-window-numbers-unicode t
+          )
+  ;;        spaceline-minor-modes-separator nil)
+          (powerline-reset)
+  )
 
+  ;; Change some powerline colors in the terminal
+    (unless (display-graphic-p) 
+            (set-face-background 'powerline-inactive2 "color-233")
+            (set-face-foreground 'powerline-inactive2 "white")
+            (set-face-background 'powerline-inactive1 "color-24")
+            (set-face-foreground 'powerline-inactive1 "white")
+            (set-face-background 'mode-line-inactive "color-233")
+  ;;          (set-face-foreground 'mode-line-inactive "white")
+    )
+#+END_SRC
 
 * Doom modeline (off)
 
 If necessary, doom's modeline can be used (not activated now)
 
 #+BEGIN_SRC emacs-lisp
-;; (use-package doom-modeline
-;;   :ensure t
-;;   :init (doom-modeline-mode 1))
+  ;; (use-package doom-modeline
+  ;;   :ensure t
+  ;;   :init (doom-modeline-mode 1))
 #+END_SRC
-
 
 * All the icons package
 
@@ -75,7 +84,6 @@ I don't think this is used, but it's good to have it, just in case
   :ensure t)
 #+END_SRC
 
-
 * Which key passage
 
 This displays completion options when you type emacs shortcuts. 
@@ -85,7 +93,6 @@ This displays completion options when you type emacs shortcuts.
   :ensure t
   :config (which-key-mode))
 #+END_SRC
-
 
 * Evil Mode ( ͡° ͜ʖ ͡°)
 
