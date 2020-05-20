@@ -50,19 +50,31 @@ Modeline inspired by the spacemacs distribution
   ;;      spaceline-buffer-encoding-abbrev-p nil
           spaceline-window-numbers-unicode t
           )
-  ;;        spaceline-minor-modes-separator nil)
+  ;;        spaceline-minor-modes-separator nil
           (powerline-reset)
-  )
+    )
 
   ;; Change some powerline colors in the terminal
     (unless (display-graphic-p) 
             (set-face-background 'powerline-inactive2 "color-233")
             (set-face-foreground 'powerline-inactive2 "white")
-            (set-face-background 'powerline-inactive1 "color-24")
-            (set-face-foreground 'powerline-inactive1 "white")
-            (set-face-background 'mode-line-inactive "color-233")
+            (set-face-background 'powerline-inactive1 "black")
+            (set-face-foreground 'powerline-inactive1 "dark grey")
+;;            (set-face-background 'mode-line-inactive "")
   ;;          (set-face-foreground 'mode-line-inactive "white")
     )
+    (when (display-graphic-p) 
+            (set-face-background 'powerline-inactive2 "gray30")
+            (set-face-foreground 'powerline-inactive2 "gray5")
+            (set-face-background 'powerline-inactive1 "gray30")
+            (set-face-foreground 'powerline-inactive1 "gray5")
+            (set-face-background 'mode-line-inactive "gray30")
+            (set-face-foreground 'mode-line-inactive "gray5")
+    )
+ ;; change vertical divider line
+    (set-face-background 'fringe "gray42") 
+    (set-fringe-style 4)
+    (scroll-bar-mode 0)
 #+END_SRC
 
 * Doom modeline (off)
