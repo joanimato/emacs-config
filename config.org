@@ -200,8 +200,9 @@ Scroll 1 line at a time.
 ** Highlight cursor line
 
 #+BEGIN_SRC emacs-lisp
-;; Highlite cursor line
+;; Highlite cursor line and set color
 (global-hl-line-mode t)
+(set-face-background hl-line-face "gray25")
 #+END_SRC
 
 ** Disable auto-indent mode(electric indent mode)
@@ -246,13 +247,11 @@ Make cursor go to new window after a split
 #+END_SRC
 
 ** Highlight matching parentheses
-(asdas dasd a)
+
 #+BEGIN_SRC emacs-lisp
 (show-paren-mode 1)
 (set-face-background 'show-paren-match "grey40")
 #+END_SRC
-
-#+RESULTS:
 
 * IDO-mode package (currently disabled)
 
@@ -307,6 +306,37 @@ swiper is a better search package (C-s)
    (org-mode . flyspell-mode)
    (prog-mode . flyspell-prog-mode)     
 )
+#+END_SRC
+
+* Better window switching
+
+Two options here: ace-window and switch-window
+
+** Ace-window
+
+#+BEGIN_SRC emacs-lisp
+(use-package ace-window
+   :ensure t
+   :bind ("M-o" . ace-window)
+   :delight
+   :config (ace-window-display-mode 1)
+   )
+#+END_SRC
+
+** Switch-window
+
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package switch-window
+  ;;   :ensure t
+  ;;   :config
+  ;;     (setq switch-window-input-style 'minibuffer)
+  ;;     (setq switch-window-increase 4)
+  ;;     (setq switch-window-threshold 2)
+  ;;     (setq switch-window-shortcut-style 'qwerty)
+  ;;     (setq switch-window-qwerty-shortcuts
+  ;;         '("a" "s" "d" "f" "j" "k" "l" "i" "o"))
+  ;;   :bind
+  ;;     ([remap other-window] . switch-window))
 #+END_SRC
 
 * Programing specifics
@@ -649,6 +679,8 @@ Add the treemacs package. This is a tree like navigation that appears on the sid
 
 #+END_SRC
 * Dictionary 
+
+Add dictionary 
 
 #+BEGIN_SRC emacs-lisp
 (use-package dictionary
