@@ -176,10 +176,11 @@ Automatically pair matching parenthesis ()
 ;; color code parenthesis
 (use-package rainbow-delimiters
   :ensure t
-  :init 
-  (add-hook 'prod-mode-hook #'rainbow-delimiters-mode)
+  :init (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 )
+
 #+END_SRC
+
 
 ** Scrolling behavior
 
@@ -252,6 +253,65 @@ Make cursor go to new window after a split
 (show-paren-mode 1)
 (set-face-background 'show-paren-match "grey40")
 #+END_SRC
+
+** Change 'yes-or-no' to 'y-or-n'
+
+#+BEGIN_SRC emacs-lisp
+(defalias 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
+
+** Enable system clock in emacs
+
+#+BEGIN_SRC emacs-lisp
+(display-time-mode 1)
+#+END_SRC
+
+** Make bash shell the default bash in ansi-term
+
+#+BEGIN_SRC emacs-lisp
+(defvar my-term-shell "/bin/bash")
+(defadvice ansi-term (before force-bash)
+  (interactive (list my-term-shell)))
+(ad-activate 'ansi-term)
+
+;; Set shortcut
+(global-set-key (kbd "C-x t b") 'ansi-term)
+#+END_SRC
+
+** Quickly visit configuration file
+
+#+BEGIN_SRC emacs-lisp
+(defun config-visit ()
+  (interactive)
+  (find-file "~/.emacs.d/config.org"))
+(global-set-key (kbd "C-c e") 'config-visit)
+#+END_SRC
+
+** Beacon Mode
+
+Cursor flashes briefly when new window is opened 
+
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package beacon
+  ;;   :ensure t
+  ;;   :config
+  ;;     (beacon-mode 1))
+#+END_SRC
+
+#+RESULTS:
+: t
+
+** Hungry delete
+
+This deletes all empty space. 
+
+#+BEGIN_SRC emacs-lisp
+(use-package hungry-delete
+  :ensure t
+  :config
+    (global-hungry-delete-mode))
+#+END_SRC
+
 
 * IDO-mode package (currently disabled)
 
