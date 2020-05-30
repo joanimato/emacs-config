@@ -12,6 +12,7 @@ I have a few options, for easy switching.
   :ensure t
 ;;  :config (load-theme 'doom-gruvbox) ;; divider ok, but comments too pale
   :config (load-theme 'doom-dark+)
+;;  :config (load-theme 'doom-one)
 ;;  :config (load-theme 'doom-acario-dark) ;; duvider ok, but not great colors.
 ;;  :config (load-theme 'doom-ephemeral) ;; looks reasonable, but too dark. not great on gui.
 ;;  :config (load-theme 'doom-laserwave)
@@ -23,8 +24,16 @@ I have a few options, for easy switching.
 ;; (unless (display-graphic-p) (load-theme 'wheatgrass))
 ;; (unless (display-graphic-p) (load-theme 'wombat))
 (unless (display-graphic-p) (load-theme 'tsdh-dark))
-#+END_SRC
 
+;; Set the default font. A few options. 
+
+;; (set-default-font "Source Code Pro 11")
+(set-default-font "DejaVu Sans Mono 11")
+;; (set-default-font "Go 11")
+;; (set-default-font "Fira Code 11")
+;; (set-default-font "Hack 11")
+;; (set-default-font "Inconsolata 12")
+#+END_SRC
 * Spaceline
 
 Modeline inspired by the spacemacs distribution
@@ -323,6 +332,15 @@ This deletes all empty space.
     (global-hungry-delete-mode))
 #+END_SRC
 
+** Shift Select
+
+This should work in all modes, including org-mode. 
+Must be in insert state. 
+
+#+BEGIN_SRC emacs-lisp
+  (setq shift-select-mode 1)
+  (setq org-support-shift-select 1)
+#+END_SRC
 
 * IDO-mode package (currently disabled)
 
@@ -423,15 +441,6 @@ GAMESS uses src for F77 files.
 (add-to-list 'auto-mode-alist '("\\.f90\\'" . f90-mode))
 (add-to-list 'auto-mode-alist '("\\.F90\\'" . f90-mode))
 #+END_SRC
-
-
-
-
-
-
-
-
-
 
 * General Package
 
