@@ -382,7 +382,9 @@ swiper is a better search package (C-s)
 ;; swiper for faster search
 (use-package swiper
   :ensure t
-  :bind ("C-s" . swiper)
+  :bind (
+  ("C-r" . swiper-isearch-backward)
+  ("C-s" . swiper))
 )
 #+END_SRC
 
