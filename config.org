@@ -125,13 +125,19 @@ emacs keybindings are also enabled in INSERT state.
 ;; EVIL mode buahhahahaha
 (use-package evil
   :ensure t
-  :init 
+  :init
   (setq evil-disable-insert-state-bindings t)
 ;;  (setq evil-mode-line-format 'before)
   :config (evil-mode)
 )
+(define-key evil-normal-state-map "\C-r" 'swiper-isearch-backward)
+(global-set-key (kbd "C-<Backspace>") 'backward-kill-word)
+
+
 ;;(setq-default mode-line-format 'before)
 #+END_SRC
+
+
 
 * Org-mode config
 
