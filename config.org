@@ -88,7 +88,7 @@ Modeline inspired by the spacemacs distribution
 
 * Doom modeline (off)
 
-If necessary, doom's modeline can be used (not activated now)
+If necessary, doom's modeline can be used (not activated now) 
 
 #+BEGIN_SRC emacs-lisp
   ;; (use-package doom-modeline
@@ -177,6 +177,12 @@ fancy org-bullets
           '(lambda () (visual-line-mode 1)))
 #+END_SRC
 
+** Images
+
+#+BEGIN_SRC emacs-lisp
+(setq org-image-actual-width nil)
+#+END_SRC
+
 * Minor fixes
 
 ** Line and column numbers
@@ -230,6 +236,15 @@ Scroll 1 line at a time.
 ;; Highlite cursor line and set color
 (global-hl-line-mode t)
 (set-face-background hl-line-face "gray25")
+
+;; Highlight only one-line in visual-line-mode
+(defun highlight-visual-line ()
+  (save-excursion
+    (cons (progn (beginning-of-visual-line) (point))
+          (progn (end-of-visual-line) (point)))))
+
+(setq hl-line-range-function 'highlight-visual-line)
+
 #+END_SRC
 
 ** Disable auto-indent mode(electric indent mode)
@@ -329,13 +344,13 @@ Cursor flashes briefly when new window is opened
 
 ** Hungry delete
 
-This deletes all empty space. 
+This deletes all empty space. Tried it for a while. Did not like it.
 
 #+BEGIN_SRC emacs-lisp
-(use-package hungry-delete
-  :ensure t
-  :config
-    (global-hungry-delete-mode))
+  ;; (use-package hungry-delete
+  ;;   :ensure t
+  ;;   :config
+  ;;     (global-hungry-delete-mode))
 #+END_SRC
 
 ** Shift Select
