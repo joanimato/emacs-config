@@ -884,3 +884,15 @@ Add lsp-mode, especially for fortran code.
   ;; (add-to-list 'eglot-server-programs '(fortran-mode . ("fortls")))
   ;; (add-to-list 'eglot-server-programs '(f90-mode . ("fortls")))
 #+END_SRC
+* Rigrep
+
+#+BEGIN_SRC emacs-lisp
+(use-package deadgrep 
+:ensure t)
+
+(use-package rg
+:ensure t
+:commands rg)
+
+(global-set-key (kbd "<f5>") #'deadgrep)
+#+END_SRC
