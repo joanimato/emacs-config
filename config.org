@@ -432,7 +432,7 @@ swiper is a better search package (C-s)
 )
 #+END_SRC
 
-* Flyspell (spellcheck)
+* Flyspell (spellcheck) and Flycheck (syntax check)
 
 #+BEGIN_SRC emacs-lisp
 (use-package flyspell
@@ -441,8 +441,39 @@ swiper is a better search package (C-s)
    (org-mode . flyspell-mode)
 ;;   (prog-mode . flyspell-prog-mode)     
 )
+
+(use-package flycheck
+  :ensure t
+  :init
+  (global-flycheck-mode t))
+
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+
+(add-hook 'f90-mode-hook
+      (lambda ()
+        (make-local-variable 'flycheck-gfortran-language-standard)
+        (setq flycheck-gfortran-language-standard "f95")))
+
+(add-hook 'fortran-mode-hook
+      (lambda ()
+        (make-local-variable 'flycheck-gfortran-language-standard)
+        (setq flycheck-gfortran-language-standard "legacy")))
+
 #+END_SRC
 
+* Company Mode
+
+#+BEGIN_SRC emacs-lisp
+(use-package company
+   :ensure t
+   :config
+   (setq company-idle-delay 0)
+  (setq company-minimum-prefix-length 3)
+)
+
+(global-company-mode t)
+#+END_SRC
 * Better window switching
 
 Two options here: ace-window and switch-window
