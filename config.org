@@ -183,6 +183,13 @@ fancy org-bullets
 (setq org-image-actual-width nil)
 #+END_SRC
 
+** Text and faces
+
+Change some org-mode faces. 
+
+#+BEGIN_SRC emacs-lisp
+(set-face-foreground ' org-document-info-keyword "medium aquamarine")
+#+END_SRC
 * Minor fixes
 
 ** Line and column numbers
@@ -233,17 +240,28 @@ Scroll 1 line at a time.
 ** Highlight cursor line
 
 #+BEGIN_SRC emacs-lisp
-;; Highlite cursor line and set color
-(global-hl-line-mode t)
-(set-face-background hl-line-face "gray25")
+  ;; Highlite cursor line and set color
+  (global-hl-line-mode t)
+  (set-face-background hl-line-face "gray25")
 
-;; Highlight only one-line in visual-line-mode
-(defun highlight-visual-line ()
-  (save-excursion
-    (cons (progn (beginning-of-visual-line) (point))
-          (progn (end-of-visual-line) (point)))))
+  ;; Highlight only one-line in visual-line-mode
+  ;; (defun highlight-visual-line ()
+  ;;   (save-excursion
+  ;;     (cons (progn (beginning-of-visual-line) (point))
+  ;;           (progn (end-of-visual-line) (point)))))
 
-(setq hl-line-range-function 'highlight-visual-line)
+(setq hl-line-range-function
+      (lambda()
+         (save-excursion
+           (cons
+            (progn
+              (beginning-of-visual-line)
+              (point))
+            (progn
+              (beginning-of-visual-line 2)
+              (point))))))
+
+;;  (setq hl-line-range-function 'highlight-visual-line)
 
 #+END_SRC
 
@@ -363,6 +381,11 @@ Must be in insert state.
   (setq org-support-shift-select 1)
 #+END_SRC
 
+** Backups in different folder
+
+#+BEGIN_SRC emacs-lisp
+(setq backup-directory-alist '(("." . "~/EmacsBackups")))
+#+END_SRC
 * IDO-mode package (currently disabled)
 
 This is the emacs default alternative to ivy. Disabled. 
@@ -791,4 +814,42 @@ Add dictionary
 
 (use-package synosaurus
   :ensure t)
+#+END_SRC
+* LSP MODE
+
+Add lsp-mode, especially for fortran code.
+
+#+BEGIN_SRC emacs-lisp
+  ;; (setq lsp-keymap-prefix "M-l")
+
+  ;; (use-package lsp-mode
+  ;;     :ensure t
+  ;;     :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
+  ;;   ;;          (fortran-mode . lsp)
+  ;;             (f90-mode . lsp)
+  ;;             ;; if you want which-key integration
+  ;;             (lsp-mode . lsp-enable-which-key-integration))
+  ;;     :commands lsp)
+
+  ;; (use-package lsp-ui 
+  ;;     :ensure t
+  ;;     :commands lsp-ui-mode)
+
+  ;; ;; if you are ivy user
+  ;; (use-package lsp-ivy 
+  ;;     :ensure t
+  ;;     :commands lsp-ivy-workspace-symbol)
+
+  ;; (use-package lsp-treemacs 
+  ;;     :ensure t
+  ;;     :commands lsp-treemacs-errors-list)
+#+END_SRC
+* Eglot
+
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package eglot
+  ;;     :ensure t)
+
+  ;; (add-to-list 'eglot-server-programs '(fortran-mode . ("fortls")))
+  ;; (add-to-list 'eglot-server-programs '(f90-mode . ("fortls")))
 #+END_SRC
