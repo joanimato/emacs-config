@@ -7,15 +7,13 @@ Theme configuration
 I have a few options, for easy switching. 
 
 #+BEGIN_SRC emacs-lisp
-(use-package faff-theme
-   :ensure t)
 
 (if (display-graphic-p)
 (use-package doom-themes
   :ensure t
 ;;  :config (load-theme 'doom-gruvbox) ;; divider ok, but comments too pale
 ;;  :config (load-theme 'doom-dark+)
-    :config (load-theme 'faff)
+;;  :config (load-theme 'faff)
 ;;  :config (load-theme 'doom-one)
 ;;  :config (load-theme 'doom-acario-dark) ;; duvider ok, but not great colors.
 ;;  :config (load-theme 'doom-ephemeral) ;; looks reasonable, but too dark. not great on gui.
@@ -24,6 +22,14 @@ I have a few options, for easy switching.
 ;;  :config (load-theme 'doom-monokai-pro)
 ;;  :config (load-theme 'doom-sourcerer)
 ))
+
+(use-package faff-theme
+   :ensure t)
+
+;;(use-package poet-theme
+;;   :ensure t)
+
+(load-theme 'faff t)
 
 ;; (unless (display-graphic-p) (load-theme 'wheatgrass))
 ;; (unless (display-graphic-p) (load-theme 'wombat))
@@ -191,7 +197,8 @@ fancy org-bullets
 Change some org-mode faces. 
 
 #+BEGIN_SRC emacs-lisp
-;; (set-face-foreground ' org-document-info-keyword "medium aquamarine")
+ (set-face-foreground 'org-document-info-keyword "RoyalBlue4")
+ (set-face-attribute 'org-document-title nil :height 200)
 #+END_SRC
 * Minor fixes
 
