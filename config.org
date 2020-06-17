@@ -7,11 +7,15 @@ Theme configuration
 I have a few options, for easy switching. 
 
 #+BEGIN_SRC emacs-lisp
+(use-package faff-theme
+   :ensure t)
+
 (if (display-graphic-p)
 (use-package doom-themes
   :ensure t
 ;;  :config (load-theme 'doom-gruvbox) ;; divider ok, but comments too pale
-  :config (load-theme 'doom-dark+)
+;;  :config (load-theme 'doom-dark+)
+    :config (load-theme 'faff)
 ;;  :config (load-theme 'doom-one)
 ;;  :config (load-theme 'doom-acario-dark) ;; duvider ok, but not great colors.
 ;;  :config (load-theme 'doom-ephemeral) ;; looks reasonable, but too dark. not great on gui.
@@ -39,51 +43,51 @@ I have a few options, for easy switching.
 Modeline inspired by the spacemacs distribution
 
 #+BEGIN_SRC emacs-lisp
-  ;; enable spacemacs mode-line
-  (use-package spaceline
-    :ensure t
-    :init 
-    (progn 
-    ;; size of modeline
-       (setq powerline-height 20)
-       (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
-    :config
-    (require 'spaceline-config)
-  ;;    (setq spaceline-buffer-encoding-abbrev-p nil)
-  ;;    (setq spaceline-line-column-p nil)
-  ;;    (setq spaceline-line-p nil)
-  ;;    (setq powerline-default-separator (quote arrow))
-  ;;  (spaceline-emacs-theme)
-    (spaceline-spacemacs-theme)
-    (setq
-  ;;      spaceline-buffer-encoding-abbrev-p nil
-          spaceline-window-numbers-unicode t
-          )
-  ;;        spaceline-minor-modes-separator nil
-          (powerline-reset)
-    )
+    ;; enable spacemacs mode-line
+    (use-package spaceline
+      :ensure t
+      :init 
+      (progn 
+      ;; size of modeline
+         (setq powerline-height 20)
+         (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
+      :config
+      (require 'spaceline-config)
+    ;;    (setq spaceline-buffer-encoding-abbrev-p nil)
+    ;;    (setq spaceline-line-column-p nil)
+    ;;    (setq spaceline-line-p nil)
+    ;;    (setq powerline-default-separator (quote arrow))
+    ;;  (spaceline-emacs-theme)
+      (spaceline-spacemacs-theme)
+      (setq
+    ;;      spaceline-buffer-encoding-abbrev-p nil
+            spaceline-window-numbers-unicode t
+            )
+    ;;        spaceline-minor-modes-separator nil
+            (powerline-reset)
+      )
 
-  ;; Change some powerline colors in the terminal
-    (unless (display-graphic-p) 
-            (set-face-background 'powerline-inactive2 "color-233")
-            (set-face-foreground 'powerline-inactive2 "white")
-            (set-face-background 'powerline-inactive1 "black")
-            (set-face-foreground 'powerline-inactive1 "dark grey")
-;;            (set-face-background 'mode-line-inactive "")
-  ;;          (set-face-foreground 'mode-line-inactive "white")
-    )
-    (when (display-graphic-p) 
-            (set-face-background 'powerline-inactive2 "gray30")
-            (set-face-foreground 'powerline-inactive2 "gray5")
-            (set-face-background 'powerline-inactive1 "gray30")
-            (set-face-foreground 'powerline-inactive1 "gray5")
-            (set-face-background 'mode-line-inactive "gray30")
-            (set-face-foreground 'mode-line-inactive "gray5")
-    )
- ;; change vertical divider line
-    (set-face-background 'fringe "gray42") 
-    (set-fringe-style 4)
-    (scroll-bar-mode 0)
+    ;; Change some powerline colors in the terminal
+      (unless (display-graphic-p) 
+              (set-face-background 'powerline-inactive2 "color-233")
+              (set-face-foreground 'powerline-inactive2 "white")
+              (set-face-background 'powerline-inactive1 "black")
+              (set-face-foreground 'powerline-inactive1 "dark grey")
+  ;;            (set-face-background 'mode-line-inactive "")
+    ;;          (set-face-foreground 'mode-line-inactive "white")
+      )
+      ;; (when (display-graphic-p) 
+      ;;         (set-face-background 'powerline-inactive2 "gray30")
+      ;;         (set-face-foreground 'powerline-inactive2 "gray5")
+      ;;         (set-face-background 'powerline-inactive1 "gray30")
+      ;;         (set-face-foreground 'powerline-inactive1 "gray5")
+      ;;         (set-face-background 'mode-line-inactive "gray30")
+      ;;         (set-face-foreground 'mode-line-inactive "gray5")
+      ;; )
+   ;; change vertical divider line
+      (set-face-background 'fringe "gray42") 
+      (set-fringe-style 4)
+      (scroll-bar-mode 0)
 #+END_SRC
 
 * Doom modeline (off)
@@ -138,7 +142,6 @@ emacs keybindings are also enabled in INSERT state.
 #+END_SRC
 
 
-
 * Org-mode config
 
 ** Org bullets
@@ -188,7 +191,7 @@ fancy org-bullets
 Change some org-mode faces. 
 
 #+BEGIN_SRC emacs-lisp
-(set-face-foreground ' org-document-info-keyword "medium aquamarine")
+;; (set-face-foreground ' org-document-info-keyword "medium aquamarine")
 #+END_SRC
 * Minor fixes
 
@@ -242,7 +245,7 @@ Scroll 1 line at a time.
 #+BEGIN_SRC emacs-lisp
   ;; Highlite cursor line and set color
   (global-hl-line-mode t)
-  (set-face-background hl-line-face "gray25")
+;;  (set-face-background hl-line-face "gray25")
 
   ;; Highlight only one-line in visual-line-mode
   ;; (defun highlight-visual-line ()
