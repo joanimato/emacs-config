@@ -38,9 +38,9 @@ I have a few options, for easy switching.
 ;; Set the default font. A few options. 
 
 ;; (set-default-font "Source Code Pro 11")
-(set-default-font "DejaVu Sans Mono 11")
-;; (set-default-font "Go 11")
-;; (set-default-font "Fira Code 11")
+;; (set-default-font "DejaVu Sans Mono 11")
+;;  (set-default-font "Go 11")
+ (set-default-font "Fira Code 11")
 ;; (set-default-font "Hack 11")
 ;; (set-default-font "Inconsolata 12")
 #+END_SRC
@@ -78,10 +78,11 @@ Modeline inspired by the spacemacs distribution
       (unless (display-graphic-p) 
               (set-face-background 'powerline-inactive2 "color-233")
               (set-face-foreground 'powerline-inactive2 "white")
-              (set-face-background 'powerline-inactive1 "black")
-              (set-face-foreground 'powerline-inactive1 "dark grey")
+              (set-face-background 'powerline-inactive1 "cyan")
+              (set-face-foreground 'powerline-inactive1 "white")
+              (set-face-foreground 'mode-line "white")
   ;;            (set-face-background 'mode-line-inactive "")
-    ;;          (set-face-foreground 'mode-line-inactive "white")
+             (set-face-foreground 'mode-line-inactive "white")
       )
       ;; (when (display-graphic-p) 
       ;;         (set-face-background 'powerline-inactive2 "gray30")
@@ -198,14 +199,17 @@ fancy org-bullets
 Change some org-mode faces. 
 
 #+BEGIN_SRC emacs-lisp
- (set-face-foreground 'org-document-info-keyword "RoyalBlue4")
- (set-face-attribute 'org-document-title nil :height 200)
- (set-face-attribute 'org-block nil :background
-                    (color-darken-name
-                    (face-attribute 'default :background) 8))
-(set-face-attribute 'org-block-begin-line nil :background
-                    (color-darken-name
-                    (face-attribute 'default :background) 14))
+   (set-face-foreground 'org-document-info-keyword "RoyalBlue4")
+   (set-face-attribute 'org-document-title nil :height 200)
+
+  (when (display-graphic-p) 
+   (set-face-attribute 'org-block nil :background
+                      (color-darken-name
+                      (face-attribute 'default :background) 8))
+   (set-face-attribute 'org-block-begin-line nil :background
+                      (color-darken-name
+                      (face-attribute 'default :background) 14))
+  )
 #+END_SRC
 
 
@@ -465,10 +469,9 @@ swiper is a better search package (C-s)
 
 (use-package flycheck
   :ensure t
-  :init
-  (global-flycheck-mode t))
+  :hook (prog-mode . flycheck-mode))
 
-(add-hook 'after-init-hook #'global-flycheck-mode)
+;; (add-hook 'after-init-hook #'global-flycheck-mode)
 
 
 (add-hook 'f90-mode-hook
@@ -494,6 +497,7 @@ swiper is a better search package (C-s)
 )
 
 (global-company-mode t)
+(global-set-key (kbd "C-w") 'company-complete)
 #+END_SRC
 
 * Better window switching
@@ -921,4 +925,49 @@ Add lsp-mode, especially for fortran code.
 
 (global-set-key (kbd "<f5>") #'deadgrep)
 #+END_SRC
+
+* HTML/CSS/Web stuff
+
+#+BEGIN_SRC emacs-lisp
+(use-package web-mode
+   :ensure t
+   :config 
+       (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+;;       (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
+       (add-to-list 'auto-mode-alist '("\\.vue?\\'" . web-mode))
+       (add-to-list 'auto-mode-alist '("\\.js?\\'" . web-mode))
+       (setq web-mode-enable-auto-closing t)
+       (setq web-mode-enable-auto-quoting t)
+       (setq web-mode-enable-auto-pairing t)
+       (setq web-mode-enable-auto-expanding t)
+)
+
+;; emmet mode for easy completion
+
+(use-package emmet-mode
+    :ensure t
+    :config
+;; Auto-start on any markup modes
+    (add-hook 'sgml-mode-hook 'emmet-mode) 
+;; Auto-start on any markup modes
+    (add-hook 'web-mode-hook 'emmet-mode) 
+;; enable Emmet's css abbreviation.
+    (add-hook 'css-mode-hook  'emmet-mode) 
+)
+
+(use-package company-web
+    :ensure t)
+(define-key web-mode-map (kbd "C-'") 'company-web-html)
+#+END_SRC
+
+* Lorem Ipsum
+
+#+BEGIN_SRC emacs-lisp
+(use-package lorem-ipsum
+    :ensure t    
+    :config (lorem-ipsum-use-default-bindings)
+)
+#+END_SRC
+
+
 
