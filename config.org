@@ -186,6 +186,10 @@ fancy org-bullets
 #+BEGIN_SRC emacs-lisp
 (add-hook 'org-mode-hook 
           '(lambda () (visual-line-mode 1)))
+(use-package adaptive-wrap
+    :ensure t
+)
+(setq-default adaptive-wrap-extra-indent 2)
 #+END_SRC
 
 ** Images
@@ -497,7 +501,7 @@ swiper is a better search package (C-s)
 )
 
 (global-company-mode t)
-(global-set-key (kbd "C-w") 'company-complete)
+(global-set-key (kbd "C-M-l") 'company-complete)
 #+END_SRC
 
 * Better window switching
