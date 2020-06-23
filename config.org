@@ -38,9 +38,9 @@ I have a few options, for easy switching.
 ;; Set the default font. A few options. 
 
 ;; (set-default-font "Source Code Pro 11")
-;; (set-default-font "DejaVu Sans Mono 11")
+ (set-default-font "DejaVu Sans Mono 12")
 ;;  (set-default-font "Go 11")
- (set-default-font "Fira Code 11")
+;; (set-default-font "Fira Code 11")
 ;; (set-default-font "Hack 11")
 ;; (set-default-font "Inconsolata 12")
 #+END_SRC
@@ -217,6 +217,12 @@ Change some org-mode faces.
 #+END_SRC
 
 
+
+** Open PDFs externally
+
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'org-file-apps '("pdf" . "okular %s"))
+#+END_SRC
 
 * Minor fixes
 
@@ -975,3 +981,37 @@ Add lsp-mode, especially for fortran code.
 
 
 
+* nov-mode
+
+#+BEGIN_SRC emacs-lisp
+(use-package nov
+    :ensure t)
+
+(add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+(setq nov-text-width 80)
+#+END_SRC
+
+* PDF-TOOLS 
+
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package pdf-tools
+  ;;     :ensure t
+  ;;    :config (pdf-tools-install)
+  ;; )
+
+  ;; (use-package org-pdftools
+  ;;    :ensure t
+  ;;    :hook (org-load . org-pdftools-setup-link))
+#+END_SRC
+
+* Openwith package
+
+Not working as it should, so I'm gonna disable it for now. 
+
+#+BEGIN_SRC emacs-lisp
+  ;; (use-package openwith
+  ;;     :ensure t
+  ;;     :init (openwith-mode 1)
+  ;;     :config (setq openwith-associations '(("\\.pdf\\'" "evince" (file)))))
+
+#+END_SRC
