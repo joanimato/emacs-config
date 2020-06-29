@@ -172,6 +172,7 @@ fancy org-bullets
     '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
     '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
   )
+(setq org-list-allow-alphabetical t)
 #+END_SRC
 
 ** Org indent mode
@@ -181,6 +182,12 @@ fancy org-bullets
 (add-hook 'org-mode-hook 'org-indent-mode)
 #+END_SRC
 
+** Org-sidebar
+
+#+BEGIN_SRC emacs-lisp
+(use-package org-sidebar
+    :ensure t)
+#+END_SRC
 ** Line wrapping in org-mode
 
 #+BEGIN_SRC emacs-lisp
@@ -224,6 +231,26 @@ Change some org-mode faces.
 (add-to-list 'org-file-apps '("pdf" . "okular %s"))
 #+END_SRC
 
+** Org2Blog
+
+Set up wordpress blogging directly from org-mode
+
+#+BEGIN_SRC emacs-lisp
+(use-package org2blog
+    :ensure t)
+
+;; set up my wordpress site.
+
+(setq org2blog/wp-blog-alist
+      '(("mildly-scientific"
+         :url "https://www.mildlyscientific.com//xmlrpc.php"
+         :username "mildlyscientific")))
+(defun org2blog-sample-keybindings ()
+  (local-set-key (kbd "M-1") #'org2blog-user-interface))
+(add-hook 'org2blog/wp-mode-hook #'org2blog-sample-keybindings)
+(setq org2blog/wp-image-upload t)
+
+#+END_SRC
 * Minor fixes
 
 ** Line and column numbers
