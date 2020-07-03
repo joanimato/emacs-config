@@ -1,4 +1,4 @@
-#+TITLE: Emacs configuration file
+k#+TITLE: Emacs configuration file
 
 * Theme 
 
@@ -57,7 +57,8 @@ Modeline inspired by the spacemacs distribution
       (progn 
       ;; size of modeline
          (setq powerline-height 20)
-         (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state))
+;;         (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+)
       :config
       (require 'spaceline-config)
     ;;    (setq spaceline-buffer-encoding-abbrev-p nil)
@@ -133,20 +134,23 @@ This activates the emacs evil mode, which allows most vim keybindings
 
 emacs keybindings are also enabled in INSERT state. 
 
+I tried this for a while, but it's not for me.
+
 #+BEGIN_SRC emacs-lisp
-;; EVIL mode buahhahahaha
-(use-package evil
-  :ensure t
-  :init
-  (setq evil-disable-insert-state-bindings t)
-;;  (setq evil-mode-line-format 'before)
-  :config (evil-mode)
-)
-(define-key evil-normal-state-map "\C-r" 'swiper-isearch-backward)
-(global-set-key (kbd "C-<Backspace>") 'backward-kill-word)
+  ;; EVIL mode buahhahahaha
+  ;; (use-package evil
+  ;;   :ensure t
+  ;;   :init
+  ;;   (setq evil-disable-insert-state-bindings t)
+  ;; ;;  (setq evil-mode-line-format 'before)
+  ;;   :config (evil-mode)
+  ;; )
+  ;; (define-key evil-normal-state-map "\C-r" 'swiper-isearch-backward)
+
+  (global-set-key (kbd "C-<Backspace>") 'backward-kill-word)
 
 
-;;(setq-default mode-line-format 'before)
+  ;;(setq-default mode-line-format 'before)
 #+END_SRC
 
 
@@ -251,6 +255,18 @@ Set up wordpress blogging directly from org-mode
 (setq org2blog/wp-image-upload t)
 
 #+END_SRC
+
+
+** Copy RTF text directly. 
+
+#+BEGIN_SRC emacs-lisp
+(use-package ox-clip
+    :ensure t)
+
+(global-set-key (kbd "C-x M-w") 'ox-clip-formatted-copy)
+#+END_SRC
+
+
 * Minor fixes
 
 ** Line and column numbers
@@ -446,6 +462,12 @@ Must be in insert state.
 
 #+BEGIN_SRC emacs-lisp
 (setq backup-directory-alist '(("." . "~/EmacsBackups")))
+#+END_SRC
+
+** Cursor style
+
+#+BEGIN_SRC emacs-lisp
+(setq-default cursor-type '(bar . 3)) 
 #+END_SRC
 
 * IDO-mode package (currently disabled)
@@ -652,14 +674,16 @@ Taken from https://github.com/suyashbire1/emacs.d/blob/master/init.el
       (load-theme 'dichromacy))
 
     (general-create-definer tyrant-def
-      :states '(normal visual insert motion emacs)
-      :prefix "SPC"
-      :non-normal-prefix "M-m")
+;;      :states '(normal visual insert motion emacs)
+      :prefix "M-m"
+;;      :non-normal-prefix "M-m"
+     )
 
     (general-create-definer despot-def
-      :states '(normal insert)
-      :prefix "SPC"
-      :non-normal-prefix "M-m")
+;;      :states '(normal insert emacs)
+      :prefix "M-m"
+;;      :non-normal-prefix "M-m"
+     )
 
     ;; (general-define-key
     ;;   :keymaps 'key-translation-map
@@ -732,7 +756,7 @@ Taken from https://github.com/suyashbire1/emacs.d/blob/master/init.el
       "ac"  'calendar
       "oa"  'org-agenda)
 
-    (general-def 'normal doc-view-mode-map
+    (general-def doc-view-mode-map
       "j"   'doc-view-next-line-or-next-page
       "k"   'doc-view-previous-line-or-previous-page
       "gg"  'doc-view-first-page
@@ -741,13 +765,13 @@ Taken from https://github.com/suyashbire1/emacs.d/blob/master/init.el
       "C-f" 'doc-view-scroll-up-or-next-page
       "C-b" 'doc-view-scroll-down-or-previous-page)
 
-    (general-def '(normal visual) outline-minor-mode-map
+    (general-def  outline-minor-mode-map
       "zn"  'outline-next-visible-heading
       "zp"  'outline-previous-visible-heading
       "zf"  'outline-forward-same-level
       "zB"  'outline-backward-same-level)
 
-    (general-def 'normal package-menu-mode-map
+    (general-def package-menu-mode-map
       "i"   'package-menu-mark-install
       "U"   'package-menu-mark-upgrades
       "d"   'package-menu-mark-delete
@@ -755,7 +779,7 @@ Taken from https://github.com/suyashbire1/emacs.d/blob/master/init.el
       "x"   'package-menu-execute
       "q"   'quit-window)
 
-    (general-def 'normal calendar-mode-map
+    (general-def calendar-mode-map
       "h"   'calendar-backward-day
       "j"   'calendar-forward-week
       "k"   'calendar-backward-week
@@ -888,9 +912,9 @@ Add the treemacs package. This is a tree like navigation that appears on the sid
           ("C-x t C-t" . treemacs-find-file)
           ("C-x t M-t" . treemacs-find-tag)))
 
-  (use-package treemacs-evil
-    :after treemacs evil
-    :ensure t)
+  ;; (use-package treemacs-evil
+  ;;   :after treemacs evil
+  ;;   :ensure t)
 
   (use-package treemacs-icons-dired
     :after treemacs dired
