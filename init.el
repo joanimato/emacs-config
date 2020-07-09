@@ -72,4 +72,6 @@
 (if (display-graphic-p)
 (when (file-readable-p "~/.emacs.d/config.org")
   (org-babel-load-file (expand-file-name "~/.emacs.d/config.org")))
+(when (file-readable-p "~/.emacs.d/config.org")
+  (org-babel-load-file (expand-file-name "~/.emacs.d/config-term.org")))
 )
