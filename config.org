@@ -1140,5 +1140,20 @@ Projectile project manager.
 A text to speech package
 #+BEGIN_SRC emacs-lisp
 (use-package eloud
-    :ensure t)
+    :ensure t
+    :config (setq eloud-espeak-path "/usr/bin/espeak"))
+
+(defun speak-my-text () "Speaks text in buffer."
+  (interactive)
+(if (region-active-p)
+  (progn
+    (kill-ring-save (region-beginning) (region-end))
+      (start-process-shell-command "speakbuffvar" nil
+        "bash -c \"killall espeak;xsel --clipboard|espeak -s 290\""))
+  (progn
+    (kill-ring-save (point-min) (point-max))
+      (start-process-shell-command "speakbuffvar" nil
+        "bash -c \"killall espeak;xsel --clipboard|espeak -s 290\""))))
+
+(global-set-key (kbd "C-M-z") 'speak-my-text)
 #+END_SRC
