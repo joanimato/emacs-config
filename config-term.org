@@ -114,17 +114,14 @@ fancy org-bullets
 Change some org-mode faces. 
 
 #+BEGIN_SRC emacs-lisp
-   (set-face-foreground 'org-document-info-keyword "RoyalBlue4")
-   (set-face-attribute 'org-document-title nil :height 200)
-
-  (when (display-graphic-p) 
+   (set-face-foreground 'org-document-info-keyword "Red")
+ 
    (set-face-attribute 'org-block nil :background
                       (color-darken-name
                       (face-attribute 'default :background) 8))
    (set-face-attribute 'org-block-begin-line nil :background
                       (color-darken-name
                       (face-attribute 'default :background) 14))
-  )
 
 (custom-set-faces
  '(italic ((t (:foreground "blue" :slant italic)))))
@@ -171,12 +168,12 @@ Book class with no parts, just chapters
 For easy references and bibliographies
 
 #+BEGIN_SRC emacs-lisp
-(use-package reftex
-    :ensure t)
+  ;; (use-package reftex
+  ;;     :ensure t)
 
-(use-package org-ref
-    :ensure t
-    :after org)
+  ;; (use-package org-ref
+  ;;     :ensure t
+  ;;     :after org)
 
 
 #+END_SRC

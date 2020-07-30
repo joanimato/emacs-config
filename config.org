@@ -1135,3 +1135,10 @@ Projectile project manager.
                               (projects . 5)))
       (setq dashboard-banner-logo-title "")))
 #+END_SRC
+* Eloud
+
+A text to speech package
+#+BEGIN_SRC emacs-lisp
+(use-package eloud
+    :ensure t)
+#+END_SRC

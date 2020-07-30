@@ -28,7 +28,7 @@
  '(org-image-actual-width (quote (0)))
  '(package-selected-packages
    (quote
-    (dashboard treemacs-projectile projectile org-ref org-refer ox-clip ox-clips org2blog org-sidebar openwith org-pdftools org-pdfview pdf-tools nov adaptive-wrap company-web emmet-mode lorem-ipsum web-mode poet-theme faff-theme rg deadgrep company eglot lsp-treemacs lsp-ivy lsp-ui lsp-mode synosaurus dictionary ace-window hungry-delete treemacs-icons-dired treemacs-evil treemacs dired-subtree dired-narrow general org-bullets flycheck wheatgrass zerodark-theme ivy swiper evil rainbow-delimiters spaceline smex ido-vertical-mode spacemacs-theme doom-modeline all-the-icons doom-themes which-key use-package))))
+    (eloud dashboard treemacs-projectile projectile org-ref org-refer ox-clip ox-clips org2blog org-sidebar openwith org-pdftools org-pdfview pdf-tools nov adaptive-wrap company-web emmet-mode lorem-ipsum web-mode poet-theme faff-theme rg deadgrep company eglot lsp-treemacs lsp-ivy lsp-ui lsp-mode synosaurus dictionary ace-window hungry-delete treemacs-icons-dired treemacs-evil treemacs dired-subtree dired-narrow general org-bullets flycheck wheatgrass zerodark-theme ivy swiper evil rainbow-delimiters spaceline smex ido-vertical-mode spacemacs-theme doom-modeline all-the-icons doom-themes which-key use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -47,7 +47,7 @@
 (require 'package)
 (setq package-enable-at-startup nil)
 (add-to-list 'package-archives
-	     '("melpa" ."http://melpa.milkbox.net/packages/")
+	     '("melpa" ."https://melpa.org/packages/")
 )
 (add-to-list 'package-archives
 	     '("gnu"   . "http://elpa.gnu.org/packages/")
