@@ -10,7 +10,7 @@ I have a few options, for easy switching.
 
 (unless (display-graphic-p) (load-theme 'tsdh-dark))
 
-(set-default-font "DejaVu Sans Mono 12")
+;;(set-default-font "DejaVu Sans Mono 12")
 
 #+END_SRC
 
@@ -217,28 +217,28 @@ Scroll 1 line at a time.
 ** Highlight cursor line
 
 #+BEGIN_SRC emacs-lisp
-  ;; Highlite cursor line and set color
-  (global-hl-line-mode t)
-;;  (set-face-background hl-line-face "gray25")
+    ;; Highlite cursor line and set color
+    (global-hl-line-mode t)
+  ;;  (set-face-background hl-line-face "gray25")
 
-  ;; Highlight only one-line in visual-line-mode
-  ;; (defun highlight-visual-line ()
-  ;;   (save-excursion
-  ;;     (cons (progn (beginning-of-visual-line) (point))
-  ;;           (progn (end-of-visual-line) (point)))))
+    ;; Highlight only one-line in visual-line-mode
+    ;; (defun highlight-visual-line ()
+    ;;   (save-excursion
+    ;;     (cons (progn (beginning-of-visual-line) (point))
+    ;;           (progn (end-of-visual-line) (point)))))
 
-(setq hl-line-range-function
-      (lambda()
-         (save-excursion
-           (cons
-            (progn
-              (beginning-of-visual-line)
-              (point))
-            (progn
-              (beginning-of-visual-line 2)
-              (point))))))
+  ;; (setq hl-line-range-function
+  ;;       (lambda()
+  ;;          (save-excursion
+  ;;            (cons
+  ;;             (progn
+  ;;               (beginning-of-visual-line)
+  ;;               (point))
+  ;;             (progn
+  ;;               (beginning-of-visual-line 2)
+  ;;               (point))))))
 
-;;  (setq hl-line-range-function 'highlight-visual-line)
+  ;;  (setq hl-line-range-function 'highlight-visual-line)
 
 #+END_SRC
 
@@ -340,6 +340,13 @@ Must be in insert state.
 (setq backup-directory-alist '(("." . "~/EmacsBackups")))
 #+END_SRC
 
+
+** Mac HOME and END keys
+
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "<home>") 'move-beginning-of-line)
+(global-set-key (kbd "<end>") 'move-end-of-line)
+#+END_SRC
 
 * IVY and swiper
 
