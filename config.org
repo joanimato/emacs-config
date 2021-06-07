@@ -1,3 +1,4 @@
+#+startup: overview
 #+TITLE: Emacs configuration file
 
 * Theme 
@@ -156,6 +157,15 @@ I tried this for a while, but it's not for me.
 #+END_SRC
 
 * Org-mode config
+
+#+begin_src emacs-lisp
+
+(use-package org
+  :ensure t
+  :config (setq org-ellipsis "↴")
+)
+
+#+end_src
 
 ** Org bullets
 
