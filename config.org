@@ -39,7 +39,7 @@ I have a few options, for easy switching.
    ;; Set the default font. A few options. 
 
    ;; (set-default-font "Source Code Pro 11")
-   ;; (set-default-font "DejaVu Sans Mono 12")
+   (set-frame-font "DejaVu Sans Mono 16")
    ;;  (set-default-font "Go 11")
    ;; (set-default-font "Fira Code 11")
    ;; (set-default-font "Hack 11")
@@ -217,8 +217,8 @@ Change some org-mode faces.
 
 #+BEGIN_SRC emacs-lisp
   ;; (set-face-foreground 'org-document-info-keyword "RoyalBlue4")
-  (set-face-attribute 'org-document-title nil :height 200)
-  (set-face-attribute 'org-level-1 nil :height 200)
+  (set-face-attribute 'org-document-title nil :height 230)
+  (set-face-attribute 'org-level-1 nil :height 210)
   (set-face-attribute 'org-level-2 nil :height 170)
       (when (display-graphic-p) 
        (set-face-attribute 'org-block nil :background
@@ -1183,13 +1183,15 @@ Projectile project manager.
 #+BEGIN_SRC emacs-lisp
       (use-package projectile
         :ensure t
-        :bind ("C-c p" . projectile-command-map)
-        :init
-        (when (display-graphic-p)
-        (projectile-mode 1)
-        (setq projectile-completion-system 'ivy)
-        )
-        )
+        :diminish projectile-mode
+        :bind-keymap ("C-c p" . projectile-command-map)
+        :config (projectile-mode)
+        :custom ((projectile-completion-system)) )
+
+  (use-package counsel-projectile
+   :ensure t
+   :config (counsel-projectile-mode) 
+  )
 
   (use-package dashboard
     :ensure t
@@ -1201,6 +1203,18 @@ Projectile project manager.
       (setq dashboard-banner-logo-title "")))
 #+END_SRC
 
+* Magit
+
+Trying magit out of git integration.
+
+#+begin_src emacs-lisp
+(use-package magit
+  :ensure t
+  ;; :custom (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
+)
+
+
+#+end_src
 * Eloud
 
 A text to speech package
