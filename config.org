@@ -328,7 +328,7 @@ For easy references and bibliographies
 Allows old shortcuts like <s + TAB. 
 
 #+begin_src emacs-lisp
-(require 'org-tempo)
+(add-to-list 'org-modules 'org-tempo t)
 #+end_src
 
 
@@ -558,6 +558,14 @@ Remove modes from modeline
     :ensure t)
 #+end_src
 
+** Transpose frame
+
+#+begin_src emacs-lisp
+(use-package transpose-frame
+  :ensure t
+)
+#+end_src
+
 * IDO-mode package (currently disabled)
 
 This is the emacs default alternative to ivy. Disabled. 
@@ -661,13 +669,22 @@ swiper is a better search package (C-s)
 #+BEGIN_SRC emacs-lisp
 (use-package company
    :ensure t
-   :config
-   (setq company-idle-delay 0)
-  (setq company-minimum-prefix-length 3)
+   :after lsp-mode
+   :hook (prog-mode . company-mode)
+   :bind (:map company-active-map
+          ("<tab>" . company-complete-selection))
+          (:map lsp-mode-map
+           ("<tab>" . company-indent-or-complete-common))
+   :custom
+   (company-idle-delay 0.0)
+   (company-minimum-prefix-length 3)
 )
 
 ;; (global-company-mode t)
 (global-set-key (kbd "C-M-l") 'company-complete)
+
+(use-package company-box
+   :hook (company-mode . company-box-mode))
 #+END_SRC
 
 * Better window switching
@@ -1061,27 +1078,32 @@ Add lsp-mode, especially for fortran code.
 #+BEGIN_SRC emacs-lisp
   ;; (setq lsp-keymap-prefix "M-l")
 
-  ;; (use-package lsp-mode
-  ;;     :ensure t
-  ;;     :hook (;; replace XXX-mode with concrete major-mode(e. g. python-mode)
-  ;;   ;;          (fortran-mode . lsp)
-  ;;             (f90-mode . lsp)
-  ;;             ;; if you want which-key integration
-  ;;             (lsp-mode . lsp-enable-which-key-integration))
-  ;;     :commands lsp)
+  (use-package lsp-mode
+      :ensure t
+      :init (setq lsp-keymap-prefix "C-c l")
+      :hook
+           (fortran-mode . lsp-deferred)
+           (f90-mode . lsp-deferred)
+      :config
+           ;; if you want which-key integration
+           (lsp-enable-which-key-integration t)
+      :commands (lsp lsp-deferred)
+    )
 
-  ;; (use-package lsp-ui 
-  ;;     :ensure t
-  ;;     :commands lsp-ui-mode)
+  (use-package lsp-ui 
+      :ensure t
+      :commands lsp-ui-mode)
 
-  ;; ;; if you are ivy user
-  ;; (use-package lsp-ivy 
-  ;;     :ensure t
-  ;;     :commands lsp-ivy-workspace-symbol)
+  ;; if you are ivy user
+  (use-package lsp-ivy 
+      :ensure t
+      :commands lsp-ivy-workspace-symbol)
 
-  ;; (use-package lsp-treemacs 
-  ;;     :ensure t
-  ;;     :commands lsp-treemacs-errors-list)
+  (use-package lsp-treemacs 
+      :ensure t
+      :after lsp
+      ;; :commands lsp-treemacs-errors-list
+   )
 #+END_SRC
 
 * Eglot
