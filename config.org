@@ -8,7 +8,7 @@ Theme configuration
 I have a few options, for easy switching. 
 
 #+BEGIN_SRC emacs-lisp
-
+   
    (if (display-graphic-p)
    (use-package doom-themes
      :ensure t
@@ -35,7 +35,7 @@ I have a few options, for easy switching.
 
    ;; (unless (display-graphic-p) (load-theme 'wheatgrass))
    ;; (unless (display-graphic-p) (load-theme 'wombat))
-   (unless (display-graphic-p) (load-theme 'tsdh-dark))
+   ;; (unless (display-graphic-p) (load-theme 'tsdh-dark))
 
    ;; Set the default font. A few options. 
 
@@ -52,63 +52,63 @@ I have a few options, for easy switching.
 Modeline inspired by the spacemacs distribution
 
 #+BEGIN_SRC emacs-lisp
-      ;; enable spacemacs mode-line
-      (use-package spaceline
-        :ensure t
-        :init 
-        (progn 
-        ;; size of modeline
-           (setq powerline-height 20)
-  ;;         (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
-  )
-        :config
-        (require 'spaceline-config)
-      ;;    (setq spaceline-buffer-encoding-abbrev-p nil)
-      ;;    (setq spaceline-line-column-p nil)
-      ;;    (setq spaceline-line-p nil)
-      ;;    (setq powerline-default-separator (quote arrow))
-      ;;  (spaceline-emacs-theme)
-        (spaceline-spacemacs-theme)
-        (setq
-      ;;      spaceline-buffer-encoding-abbrev-p nil
-              spaceline-window-numbers-unicode t
-              )
-      ;;        spaceline-minor-modes-separator nil
-              (powerline-reset)
-        )
+    ;; enable spacemacs mode-line
+    ;; (use-package spaceline
+    ;;   :ensure t
+    ;;   :init 
+    ;;   (progn 
+    ;;   ;; size of modeline
+    ;;      (setq powerline-height 20)
+    ;;   ;; (setq spaceline-highlight-face-func 'spaceline-highlight-face-evil-state)
+    ;;   )
+    ;;   :config
+    ;;   (require 'spaceline-config)
+    ;; ;;    (setq spaceline-buffer-encoding-abbrev-p nil)
+    ;; ;;    (setq spaceline-line-column-p nil)
+    ;; ;;    (setq spaceline-line-p nil)
+    ;; ;;    (setq powerline-default-separator (quote arrow))
+    ;; ;;  (spaceline-emacs-theme)
+    ;;   (spaceline-spacemacs-theme)
+    ;;   (setq
+    ;; ;;      spaceline-buffer-encoding-abbrev-p nil
+    ;;         spaceline-window-numbers-unicode t
+    ;;         )
+    ;; ;;        spaceline-minor-modes-separator nil
+    ;;         (powerline-reset)
+    ;;   )
 
-      ;; Change some powerline colors in the terminal
-        (unless (display-graphic-p) 
-                (set-face-background 'powerline-inactive2 "color-233")
-                (set-face-foreground 'powerline-inactive2 "white")
-                (set-face-background 'powerline-inactive1 "cyan")
-                (set-face-foreground 'powerline-inactive1 "white")
-                (set-face-foreground 'mode-line "white")
-    ;;            (set-face-background 'mode-line-inactive "")
-               (set-face-foreground 'mode-line-inactive "white")
-        )
-        ;; (when (display-graphic-p) 
-        ;;         (set-face-background 'powerline-inactive2 "gray30")
-        ;;         (set-face-foreground 'powerline-inactive2 "gray5")
-        ;;         (set-face-background 'powerline-inactive1 "gray30")
-        ;;         (set-face-foreground 'powerline-inactive1 "gray5")
-        ;;         (set-face-background 'mode-line-inactive "gray30")
-        ;;         (set-face-foreground 'mode-line-inactive "gray5")
-        ;; )
-     ;; change vertical divider line
-        (set-face-background 'fringe "gray42") 
-        (set-fringe-style 4)
-        (scroll-bar-mode 0)
+    ;; Change some powerline colors in the terminal
+  ;;     (unless (display-graphic-p) 
+  ;;             (set-face-background 'powerline-inactive2 "color-233")
+  ;;             (set-face-foreground 'powerline-inactive2 "white")
+  ;;             (set-face-background 'powerline-inactive1 "cyan")
+  ;;             (set-face-foreground 'powerline-inactive1 "white")
+  ;;             (set-face-foreground 'mode-line "white")
+  ;; ;;            (set-face-background 'mode-line-inactive "")
+  ;;            (set-face-foreground 'mode-line-inactive "white")
+  ;;     )
+      ;; (when (display-graphic-p) 
+      ;;         (set-face-background 'powerline-inactive2 "gray30")
+      ;;         (set-face-foreground 'powerline-inactive2 "gray5")
+      ;;         (set-face-background 'powerline-inactive1 "gray30")
+      ;;         (set-face-foreground 'powerline-inactive1 "gray5")
+      ;;         (set-face-background 'mode-line-inactive "gray30")
+      ;;         (set-face-foreground 'mode-line-inactive "gray5")
+      ;; )
+   ;; change vertical divider line
+      (set-face-background 'fringe "gray42") 
+      (set-fringe-style 4)
+      (scroll-bar-mode 0)
 #+END_SRC
 
-* Doom modeline (off)
+* Doom modeline 
 
 If necessary, doom's modeline can be used (not activated now) 
 
 #+BEGIN_SRC emacs-lisp
-  ;; (use-package doom-modeline
-  ;;   :ensure t
-  ;;   :init (doom-modeline-mode 1))
+  (use-package doom-modeline
+    :ensure t
+    :init (doom-modeline-mode 1))
 #+END_SRC
 
 * All the icons package
@@ -259,14 +259,14 @@ Change some org-mode faces.
   (set-face-attribute 'org-document-title nil :height 230)
   (set-face-attribute 'org-level-1 nil :height 210)
   (set-face-attribute 'org-level-2 nil :height 170)
-      (when (display-graphic-p) 
-       (set-face-attribute 'org-block nil :background
-                          (color-darken-name
-                          (face-attribute 'default :background) 8))
-       (set-face-attribute 'org-block-begin-line nil :background
-                          (color-darken-name
-                          (face-attribute 'default :background) 14))
-      )
+
+  ;; (set-face-attribute 'org-block nil :background
+  ;;                  (color-darken-name
+  ;;                         (face-attribute 'default :background) 8))
+  ;; (set-face-attribute 'org-block-begin-line nil :background
+  ;;                  (color-darken-name
+  ;;                         (face-attribute 'default :background) 14))
+
 
     (custom-set-faces
      '(italic ((t (:foreground "blue" :slant italic)))))
@@ -284,19 +284,19 @@ Change some org-mode faces.
 Set up wordpress blogging directly from org-mode
 
 #+BEGIN_SRC emacs-lisp
-(use-package org2blog
-    :ensure t)
+  ;; (use-package org2blog
+  ;;     :ensure t)
 
-;; set up my wordpress site.
+  ;; ;; set up my wordpress site.
 
-(setq org2blog/wp-blog-alist
-      '(("mildly-scientific"
-         :url "https://www.mildlyscientific.com//xmlrpc.php"
-         :username "mildlyscientific")))
-(defun org2blog-sample-keybindings ()
-  (local-set-key (kbd "M-1") #'org2blog-user-interface))
-(add-hook 'org2blog/wp-mode-hook #'org2blog-sample-keybindings)
-(setq org2blog/wp-image-upload t)
+  ;; (setq org2blog/wp-blog-alist
+  ;;       '(("mildly-scientific"
+  ;;          :url "https://www.mildlyscientific.com//xmlrpc.php"
+  ;;          :username "mildlyscientific")))
+  ;; (defun org2blog-sample-keybindings ()
+  ;;   (local-set-key (kbd "M-1") #'org2blog-user-interface))
+  ;; (add-hook 'org2blog/wp-mode-hook #'org2blog-sample-keybindings)
+  ;; (setq org2blog/wp-image-upload t)
 
 #+END_SRC
 
@@ -325,15 +325,15 @@ Set up wordpress blogging directly from org-mode
 Book class with no parts, just chapters
 
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'org-latex-classes
-           '("book-noparts"
-              "\\documentclass{book}"
-              ("\\chapter{%s}" . "\\chapter*{%s}")
-              ("\\section{%s}" . "\\section*{%s}")
-              ("\\subsection{%s}" . "\\subsection*{%s}")
-              ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
-              ("\\paragraph{%s}" . "\\paragraph*{%s}")
-              ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+  ;; (add-to-list 'org-latex-classes
+  ;;            '("book-noparts"
+  ;;               "\\documentclass{book}"
+  ;;               ("\\chapter{%s}" . "\\chapter*{%s}")
+  ;;               ("\\section{%s}" . "\\section*{%s}")
+  ;;               ("\\subsection{%s}" . "\\subsection*{%s}")
+  ;;               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+  ;;               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+  ;;               ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 #+END_SRC
 
 
@@ -342,12 +342,12 @@ Book class with no parts, just chapters
 For easy references and bibliographies
 
 #+BEGIN_SRC emacs-lisp
-(use-package reftex
-    :ensure t)
+  ;; (use-package reftex
+  ;;     :ensure t)
 
-(use-package org-ref
-    :ensure t
-    :after org)
+  ;; (use-package org-ref
+  ;;     :ensure t
+  ;;     :after org)
 
 
 #+END_SRC
@@ -534,7 +534,7 @@ Make cursor go to new window after a split
 #+BEGIN_SRC emacs-lisp
 (defun config-visit ()
   (interactive)
-  (find-file "~/.emacs.d/config.org"))
+  (find-file "~/.emacs-configs/my-emacs/config.org"))
 (global-set-key (kbd "C-c e") 'config-visit)
 #+END_SRC
 
@@ -716,24 +716,25 @@ swiper is a better search package (C-s)
 * Company Mode
 
 #+BEGIN_SRC emacs-lisp
-(use-package company
-   :ensure t
-   :after lsp-mode
-   :hook (prog-mode . company-mode)
-   :bind (:map company-active-map
-          ("<tab>" . company-complete-selection))
-          (:map lsp-mode-map
-           ("<tab>" . company-indent-or-complete-common))
-   :custom
-   (company-idle-delay 0.0)
-   (company-minimum-prefix-length 3)
-)
+  (use-package company
+     :ensure t
+     :after lsp-mode
+     :hook (prog-mode . company-mode)
+     :bind (:map company-active-map
+            ("<tab>" . company-complete-selection))
+            (:map lsp-mode-map
+             ("<tab>" . company-indent-or-complete-common))
+     :custom
+     (company-idle-delay 0.0)
+     (company-minimum-prefix-length 3)
+  )
 
-;; (global-company-mode t)
-(global-set-key (kbd "C-M-l") 'company-complete)
+  (global-company-mode t)
+  (global-set-key (kbd "C-M-l") 'company-complete)
 
-(use-package company-box
-   :hook (company-mode . company-box-mode))
+   (use-package company-box
+      :ensure t
+      :hook (company-mode . company-box-mode))
 #+END_SRC
 
 * Better window switching
@@ -788,206 +789,206 @@ The general package adds space leader key style keybindings.
 Taken from https://github.com/suyashbire1/emacs.d/blob/master/init.el
 
 #+BEGIN_SRC emacs-lisp
-    (use-package general
-      :ensure t
-      :after which-key
-      :config
-      (general-override-mode 1)
+  ;;   (use-package general
+  ;;     :ensure t
+  ;;     :after which-key
+  ;;     :config
+  ;;     (general-override-mode 1)
 
-      (defun find-user-init-file ()
-        "Edit the `user-init-file', in same window."
-        (interactive)
-        (find-file user-init-file))
-      (defun load-user-init-file ()
-        "Load the `user-init-file', in same window."
-        (interactive)
-        (load-file user-init-file))
+  ;;     (defun find-user-init-file ()
+  ;;       "Edit the `user-init-file', in same window."
+  ;;       (interactive)
+  ;;       (find-file user-init-file))
+  ;;     (defun load-user-init-file ()
+  ;;       "Load the `user-init-file', in same window."
+  ;;       (interactive)
+  ;;       (load-file user-init-file))
 
-      ;;Taken from http://emacsredux.com/blog/2013/05/04/rename-file-and-buffer/
-      (defun rename-file-and-buffer ()
-        "Rename the current buffer and file it is visiting."
-        (interactive)
-        (let ((filename (buffer-file-name)))
-          (if (not (and filename (file-exists-p filename)))
-              (message "Buffer is not visiting a file!")
-            (let ((new-name (read-file-name "New name: " filename)))
-              (cond
-               ((vc-backend filename) (vc-rename-file filename new-name))
-               (t
-                (rename-file filename new-name t)
-                (set-visited-file-name new-name t t)))))))
+  ;;     ;;Taken from http://emacsredux.com/blog/2013/05/04/rename-file-and-buffer/
+  ;;     (defun rename-file-and-buffer ()
+  ;;       "Rename the current buffer and file it is visiting."
+  ;;       (interactive)
+  ;;       (let ((filename (buffer-file-name)))
+  ;;         (if (not (and filename (file-exists-p filename)))
+  ;;             (message "Buffer is not visiting a file!")
+  ;;           (let ((new-name (read-file-name "New name: " filename)))
+  ;;             (cond
+  ;;              ((vc-backend filename) (vc-rename-file filename new-name))
+  ;;              (t
+  ;;               (rename-file filename new-name t)
+  ;;               (set-visited-file-name new-name t t)))))))
 
 
-      (defun disable-all-themes ()
-        "disable all active themes."
-        (dolist (i custom-enabled-themes)
-          (disable-theme i)))
+  ;;     (defun disable-all-themes ()
+  ;;       "disable all active themes."
+  ;;       (dolist (i custom-enabled-themes)
+  ;;         (disable-theme i)))
 
-      (defadvice load-theme (before disable-themes-first activate)
-        (disable-all-themes))
+  ;;     (defadvice load-theme (before disable-themes-first activate)
+  ;;       (disable-all-themes))
 
-      ;; Following lines to cycle through themes adapted from ivan's answer on
-      ;; https://emacs.stackexchange.com/questions/24088/make-a-function-to-toggle-themes
-      (setq my/themes (custom-available-themes))
-      (setq my/themes-index 0)
+  ;;     ;; Following lines to cycle through themes adapted from ivan's answer on
+  ;;     ;; https://emacs.stackexchange.com/questions/24088/make-a-function-to-toggle-themes
+  ;;     (setq my/themes (custom-available-themes))
+  ;;     (setq my/themes-index 0)
 
-      (defun my/cycle-theme ()
-        "Cycles through my themes."
-        (interactive)
-        (setq my/themes-index (% (1+ my/themes-index) (length my/themes)))
-        (my/load-indexed-theme))
+  ;;     (defun my/cycle-theme ()
+  ;;       "Cycles through my themes."
+  ;;       (interactive)
+  ;;       (setq my/themes-index (% (1+ my/themes-index) (length my/themes)))
+  ;;       (my/load-indexed-theme))
 
-      (defun my/load-indexed-theme ()
-        (load-theme (nth my/themes-index my/themes)))
+  ;;     (defun my/load-indexed-theme ()
+  ;;       (load-theme (nth my/themes-index my/themes)))
 
-      (defun load-leuven-theme ()
-        "Loads `leuven' theme"
-        (interactive)
-        (load-theme 'leuven))
+  ;;     (defun load-leuven-theme ()
+  ;;       "Loads `leuven' theme"
+  ;;       (interactive)
+  ;;       (load-theme 'leuven))
 
-      (defun load-dichromacy-theme ()
-        "Loads `dichromacy' theme"
-        (interactive)
-        (load-theme 'dichromacy))
+  ;;     (defun load-dichromacy-theme ()
+  ;;       "Loads `dichromacy' theme"
+  ;;       (interactive)
+  ;;       (load-theme 'dichromacy))
 
-      (general-create-definer tyrant-def
-  ;;      :states '(normal visual insert motion emacs)
-        :prefix "M-m"
-  ;;      :non-normal-prefix "M-m"
-       )
+  ;;     (general-create-definer tyrant-def
+  ;; ;;      :states '(normal visual insert motion emacs)
+  ;;       :prefix "M-m"
+  ;; ;;      :non-normal-prefix "M-m"
+  ;;      )
 
-      (general-create-definer despot-def
-  ;;      :states '(normal insert emacs)
-        :prefix "M-m"
-  ;;      :non-normal-prefix "M-m"
-       )
+  ;;     (general-create-definer despot-def
+  ;; ;;      :states '(normal insert emacs)
+  ;;       :prefix "M-m"
+  ;; ;;      :non-normal-prefix "M-m"
+  ;;      )
 
-      ;; (general-define-key
-      ;;   :keymaps 'key-translation-map
-      ;;   "ESC" (kbd "C-g"))
+  ;;     ;; (general-define-key
+  ;;     ;;   :keymaps 'key-translation-map
+  ;;     ;;   "ESC" (kbd "C-g"))
 
-      (general-def
-        "C-x x" 'eval-defun)
+  ;;     (general-def
+  ;;       "C-x x" 'eval-defun)
 
-      (tyrant-def
+  ;;     (tyrant-def
 
-        ""     nil
-        "c"   (general-simulate-key "C-c")
-        "h"   (general-simulate-key "C-h")
-        "u"   (general-simulate-key "C-u")
-        "x"   (general-simulate-key "C-x")
-        "<SPC>" (general-simulate-key "M-x")
+  ;;       ""     nil
+  ;;       "c"   (general-simulate-key "C-c")
+  ;;       "h"   (general-simulate-key "C-h")
+  ;;       "u"   (general-simulate-key "C-u")
+  ;;       "x"   (general-simulate-key "C-x")
+  ;;       "<SPC>" (general-simulate-key "M-x")
 
-        ;; Package manager
-        "lp"  'list-packages
+  ;;       ;; Package manager
+  ;;       "lp"  'list-packages
 
-        ;; Theme operations
-        "t"   '(:ignore t :which-key "themes")
-        "tn"  'my/cycle-theme
-        "tt"  'load-theme
-        "tl"  'load-leuven-theme
-        "td"  'load-dichromacy-theme
+  ;;       ;; Theme operations
+  ;;       "t"   '(:ignore t :which-key "themes")
+  ;;       "tn"  'my/cycle-theme
+  ;;       "tt"  'load-theme
+  ;;       "tl"  'load-leuven-theme
+  ;;       "td"  'load-dichromacy-theme
 
-        ;; Quit operations
-        "q"	  '(:ignore t :which-key "quit emacs")
-        "qq"  'kill-emacs
-        "qz"  'delete-frame
+  ;;       ;; Quit operations
+  ;;       "q"	  '(:ignore t :which-key "quit emacs")
+  ;;       "qq"  'kill-emacs
+  ;;       "qz"  'delete-frame
 
-        ;; Buffer operations
-        "b"   '(:ignore t :which-key "buffer")
-        "bb"  'mode-line-other-buffer
-        "bd"  'kill-this-buffer
-        "b]"  'next-buffer
-        "b["  'previous-buffer
-        "bq"  'kill-buffer-and-window
-        "bR"  'rename-file-and-buffer
-        "br"  'revert-buffer
+  ;;       ;; Buffer operations
+  ;;       "b"   '(:ignore t :which-key "buffer")
+  ;;       "bb"  'mode-line-other-buffer
+  ;;       "bd"  'kill-this-buffer
+  ;;       "b]"  'next-buffer
+  ;;       "b["  'previous-buffer
+  ;;       "bq"  'kill-buffer-and-window
+  ;;       "bR"  'rename-file-and-buffer
+  ;;       "br"  'revert-buffer
 
-        ;; Window operations
-        "w"   '(:ignore t :which-key "window")
-        "wm"  'maximize-window
-        "w/"  'split-window-horizontally
-        "wv"  'split-window-vertically
-        "wm"  'maximize-window
-        "wu"  'winner-undo
-        "ww"  'other-window
-        "wd"  'delete-window
-        "wD"  'delete-other-windows
+  ;;       ;; Window operations
+  ;;       "w"   '(:ignore t :which-key "window")
+  ;;       "wm"  'maximize-window
+  ;;       "w/"  'split-window-horizontally
+  ;;       "wv"  'split-window-vertically
+  ;;       "wm"  'maximize-window
+  ;;       "wu"  'winner-undo
+  ;;       "ww"  'other-window
+  ;;       "wd"  'delete-window
+  ;;       "wD"  'delete-other-windows
 
-        ;; File operations
-        "f"   '(:ignore t :which-key "files")
-        "fc"  'write-file
-        "fe"  '(:ignore t :which-key "emacs")
-        "fed" 'find-user-init-file
-        "feR" 'load-user-init-file
-        "fj"  'dired-jump
-        "fl"  'find-file-literally
-        "fR"  'rename-file-and-buffer
-        "fs"  'save-buffer
+  ;;       ;; File operations
+  ;;       "f"   '(:ignore t :which-key "files")
+  ;;       "fc"  'write-file
+  ;;       "fe"  '(:ignore t :which-key "emacs")
+  ;;       "fed" 'find-user-init-file
+  ;;       "feR" 'load-user-init-file
+  ;;       "fj"  'dired-jump
+  ;;       "fl"  'find-file-literally
+  ;;       "fR"  'rename-file-and-buffer
+  ;;       "fs"  'save-buffer
 
-        ;; Applications
-        "a"   '(:ignore t :which-key "Applications")
-        "ad"  'dired
-        ":"   'shell-command
-        ";"   'eval-expression
-        "ac"  'calendar
-        "oa"  'org-agenda)
+  ;;       ;; Applications
+  ;;       "a"   '(:ignore t :which-key "Applications")
+  ;;       "ad"  'dired
+  ;;       ":"   'shell-command
+  ;;       ";"   'eval-expression
+  ;;       "ac"  'calendar
+  ;;       "oa"  'org-agenda)
 
-      ;; (general-def doc-view-mode-map
-      ;;   "j"   'doc-view-next-line-or-next-page
-      ;;   "k"   'doc-view-previous-line-or-previous-page
-      ;;   "gg"  'doc-view-first-page
-      ;;   "G"   'doc-view-last-page
-      ;;   "C-d" 'doc-view-scroll-up-or-next-page
-      ;;   "C-f" 'doc-view-scroll-up-or-next-page
-      ;;  "C-b" 'doc-view-scroll-down-or-previous-page) 
+  ;;     ;; (general-def doc-view-mode-map
+  ;;     ;;   "j"   'doc-view-next-line-or-next-page
+  ;;     ;;   "k"   'doc-view-previous-line-or-previous-page
+  ;;     ;;   "gg"  'doc-view-first-page
+  ;;     ;;   "G"   'doc-view-last-page
+  ;;     ;;   "C-d" 'doc-view-scroll-up-or-next-page
+  ;;     ;;   "C-f" 'doc-view-scroll-up-or-next-page
+  ;;     ;;  "C-b" 'doc-view-scroll-down-or-previous-page) 
 
-      ;; (general-def  outline-minor-mode-map
-      ;;   "zn"  'outline-next-visible-heading
-      ;;   "zp"  'outline-previous-visible-heading
-      ;;   "zf"  'outline-forward-same-level
-      ;;   "zB"  'outline-backward-same-level)
+  ;;     ;; (general-def  outline-minor-mode-map
+  ;;     ;;   "zn"  'outline-next-visible-heading
+  ;;     ;;   "zp"  'outline-previous-visible-heading
+  ;;     ;;   "zf"  'outline-forward-same-level
+  ;;     ;;   "zB"  'outline-backward-same-level)
 
-      (general-def package-menu-mode-map
-        "i"   'package-menu-mark-install
-        "U"   'package-menu-mark-upgrades
-        "d"   'package-menu-mark-delete
-        "u"   'package-menu-mark-unmark
-        "x"   'package-menu-execute
-        "q"   'quit-window)
+  ;;     (general-def package-menu-mode-map
+  ;;       "i"   'package-menu-mark-install
+  ;;       "U"   'package-menu-mark-upgrades
+  ;;       "d"   'package-menu-mark-delete
+  ;;       "u"   'package-menu-mark-unmark
+  ;;       "x"   'package-menu-execute
+  ;;       "q"   'quit-window)
 
-      (general-def calendar-mode-map
-        "h"   'calendar-backward-day
-        "j"   'calendar-forward-week
-        "k"   'calendar-backward-week
-        "l"   'calendar-forward-day
-        "0"   'calendar-beginning-of-week
-        "^"   'calendar-beginning-of-week
-        "$"   'calendar-end-of-week
-        "["   'calendar-backward-year
-        "]"   'calendar-forward-year
-        "("   'calendar-beginning-of-month
-        ")"   'calendar-end-of-month
-        "SPC" 'scroll-other-window
-        "S-SPC" 'scroll-other-window-down
-        "<delete>" 'scroll-other-window-down
-        "<"   'calendar-scroll-right
-        ">"   'calendar-scroll-left
-        "C-b" 'calendar-scroll-right-three-months
-        "C-f" 'calendar-scroll-left-three-months
-        "{"   'calendar-backward-month
-        "}"   'calendar-forward-month
-        "C-k" 'calendar-backward-month
-        "C-j" 'calendar-forward-month
-        "gk"  'calendar-backward-month
-        "gj"  'calendar-forward-month
-        "v"   'calendar-set-mark
-        "."   'calendar-goto-today
-        "q"   'calendar-exit)
-      )
+  ;;     (general-def calendar-mode-map
+  ;;       "h"   'calendar-backward-day
+  ;;       "j"   'calendar-forward-week
+  ;;       "k"   'calendar-backward-week
+  ;;       "l"   'calendar-forward-day
+  ;;       "0"   'calendar-beginning-of-week
+  ;;       "^"   'calendar-beginning-of-week
+  ;;       "$"   'calendar-end-of-week
+  ;;       "["   'calendar-backward-year
+  ;;       "]"   'calendar-forward-year
+  ;;       "("   'calendar-beginning-of-month
+  ;;       ")"   'calendar-end-of-month
+  ;;       "SPC" 'scroll-other-window
+  ;;       "S-SPC" 'scroll-other-window-down
+  ;;       "<delete>" 'scroll-other-window-down
+  ;;       "<"   'calendar-scroll-right
+  ;;       ">"   'calendar-scroll-left
+  ;;       "C-b" 'calendar-scroll-right-three-months
+  ;;       "C-f" 'calendar-scroll-left-three-months
+  ;;       "{"   'calendar-backward-month
+  ;;       "}"   'calendar-forward-month
+  ;;       "C-k" 'calendar-backward-month
+  ;;       "C-j" 'calendar-forward-month
+  ;;       "gk"  'calendar-backward-month
+  ;;       "gj"  'calendar-forward-month
+  ;;       "v"   'calendar-set-mark
+  ;;       "."   'calendar-goto-today
+  ;;       "q"   'calendar-exit)
+  ;;     )
 
-    (use-package suggest
-      :general (tyrant-def "as" 'suggest))
+  ;;   (use-package suggest
+  ;;     :general (tyrant-def "as" 'suggest))
 
 #+END_SRC
 
@@ -1127,32 +1128,32 @@ Add lsp-mode, especially for fortran code.
 #+BEGIN_SRC emacs-lisp
   ;; (setq lsp-keymap-prefix "M-l")
 
-  (use-package lsp-mode
-      :ensure t
-      :init (setq lsp-keymap-prefix "C-c l")
-      :hook
-           (fortran-mode . lsp-deferred)
-           (f90-mode . lsp-deferred)
-      :config
-           ;; if you want which-key integration
-           (lsp-enable-which-key-integration t)
-      :commands (lsp lsp-deferred)
-    )
+  ;; (use-package lsp-mode
+  ;;     :ensure t
+  ;;     :init (setq lsp-keymap-prefix "C-c l")
+  ;;     :hook
+  ;;          (fortran-mode . lsp-deferred)
+  ;;          (f90-mode . lsp-deferred)
+  ;;     :config
+  ;;          ;; if you want which-key integration
+  ;;          (lsp-enable-which-key-integration t)
+  ;;     :commands (lsp lsp-deferred)
+  ;;   )
 
-  (use-package lsp-ui 
-      :ensure t
-      :commands lsp-ui-mode)
+  ;; (use-package lsp-ui 
+  ;;     :ensure t
+  ;;     :commands lsp-ui-mode)
 
-  ;; if you are ivy user
-  (use-package lsp-ivy 
-      :ensure t
-      :commands lsp-ivy-workspace-symbol)
+  ;; ;; if you are ivy user
+  ;; (use-package lsp-ivy 
+  ;;     :ensure t
+  ;;     :commands lsp-ivy-workspace-symbol)
 
-  (use-package lsp-treemacs 
-      :ensure t
-      :after lsp
-      ;; :commands lsp-treemacs-errors-list
-   )
+  ;; (use-package lsp-treemacs 
+  ;;     :ensure t
+  ;;     :after lsp
+  ;;     ;; :commands lsp-treemacs-errors-list
+  ;;  )
 #+END_SRC
 
 * Eglot
@@ -1181,35 +1182,35 @@ Add lsp-mode, especially for fortran code.
 * HTML/CSS/Web stuff
 
 #+BEGIN_SRC emacs-lisp
-(use-package web-mode
-   :ensure t
-   :config 
-       (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-;;       (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
-       (add-to-list 'auto-mode-alist '("\\.vue?\\'" . web-mode))
-       (add-to-list 'auto-mode-alist '("\\.js?\\'" . web-mode))
-       (setq web-mode-enable-auto-closing t)
-       (setq web-mode-enable-auto-quoting t)
-       (setq web-mode-enable-auto-pairing t)
-       (setq web-mode-enable-auto-expanding t)
-)
+  (use-package web-mode
+     :ensure t
+     :config 
+         (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+  ;;       (add-to-list 'auto-mode-alist '("\\.css?\\'" . web-mode))
+         (add-to-list 'auto-mode-alist '("\\.vue?\\'" . web-mode))
+         (add-to-list 'auto-mode-alist '("\\.js?\\'" . web-mode))
+         (setq web-mode-enable-auto-closing t)
+         (setq web-mode-enable-auto-quoting t)
+         (setq web-mode-enable-auto-pairing t)
+         (setq web-mode-enable-auto-expanding t)
+  )
 
-;; emmet mode for easy completion
+  ;; emmet mode for easy completion
 
-(use-package emmet-mode
-    :ensure t
-    :config
-;; Auto-start on any markup modes
-    (add-hook 'sgml-mode-hook 'emmet-mode) 
-;; Auto-start on any markup modes
-    (add-hook 'web-mode-hook 'emmet-mode) 
-;; enable Emmet's css abbreviation.
-    (add-hook 'css-mode-hook  'emmet-mode) 
-)
+  (use-package emmet-mode
+      :ensure t
+      :config
+  ;; Auto-start on any markup modes
+      (add-hook 'sgml-mode-hook 'emmet-mode) 
+  ;; Auto-start on any markup modes
+      (add-hook 'web-mode-hook 'emmet-mode) 
+  ;; enable Emmet's css abbreviation.
+      (add-hook 'css-mode-hook  'emmet-mode) 
+  )
 
-(use-package company-web
-    :ensure t)
-(define-key web-mode-map (kbd "C-'") 'company-web-html)
+  ;; (use-package company-web
+  ;;     :ensure t)
+  (define-key web-mode-map (kbd "C-'") 'company-web-html)
 #+END_SRC
 
 * Lorem Ipsum
@@ -1262,12 +1263,12 @@ Not working as it should, so I'm gonna disable it for now.
 Projectile project manager.
 
 #+BEGIN_SRC emacs-lisp
-      (use-package projectile
-        :ensure t
-        :diminish projectile-mode
-        :bind-keymap ("C-c p" . projectile-command-map)
-        :config (projectile-mode)
-        :custom ((projectile-completion-system)) )
+  (use-package projectile
+    :ensure t
+    :diminish projectile-mode
+    :bind-keymap ("C-c p" . projectile-command-map)
+    :config (projectile-mode)
+    :custom ((projectile-completion-system)) )
 
   (use-package counsel-projectile
    :ensure t
@@ -1300,23 +1301,23 @@ Trying magit out of git integration.
 
 A text to speech package
 #+BEGIN_SRC emacs-lisp
-(use-package eloud
-    :ensure t
-    :config (setq eloud-espeak-path "/usr/bin/espeak"))
+  ;; (use-package eloud
+  ;;     :ensure t
+  ;;     :config (setq eloud-espeak-path "/usr/bin/espeak"))
 
-(defun speak-my-text () "Speaks text in buffer."
-  (interactive)
-(if (region-active-p)
-  (progn
-    (kill-ring-save (region-beginning) (region-end))
-      (start-process-shell-command "speakbuffvar" nil
-        "bash -c \"killall espeak;xsel --clipboard|espeak -s 290\""))
-  (progn
-    (kill-ring-save (point-min) (point-max))
-      (start-process-shell-command "speakbuffvar" nil
-        "bash -c \"killall espeak;xsel --clipboard|espeak -s 290\""))))
+  ;; (defun speak-my-text () "Speaks text in buffer."
+  ;;   (interactive)
+  ;; (if (region-active-p)
+  ;;   (progn
+  ;;     (kill-ring-save (region-beginning) (region-end))
+  ;;       (start-process-shell-command "speakbuffvar" nil
+  ;;         "bash -c \"killall espeak;xsel --clipboard|espeak -s 290\""))
+  ;;   (progn
+  ;;     (kill-ring-save (point-min) (point-max))
+  ;;       (start-process-shell-command "speakbuffvar" nil
+  ;;         "bash -c \"killall espeak;xsel --clipboard|espeak -s 290\""))))
 
-(global-set-key (kbd "C-M-z") 'speak-my-text)
+  ;; (global-set-key (kbd "C-M-z") 'speak-my-text)
 #+END_SRC
 
 * Polymode and ESS
@@ -1330,18 +1331,58 @@ A text to speech package
   :ensure t)
 #+END_SRC
 
-* Reveal J'S
+* Reveal JS
 
 Reveal JS presentation on org-mode
 
 #+begin_src emacs-lisp
-(use-package ox-reveal
+  ;; (use-package ox-reveal
+  ;;    :ensure t
+  ;;    :init (setq org-reveal-mathjax t)
+  ;;    :config (setq org-reveal-root "/Users/jmhimara/reveal.js")
+  ;; )
+
+  ;; (use-package htmlize
+  ;;    :ensure t)
+
+#+end_src
+
+* Python Anaconda mode
+
+#+begin_src emacs-lisp
+(use-package anaconda-mode
    :ensure t
-   :init (setq org-reveal-mathjax t)
-   :config (setq org-reveal-root "/Users/jmhimara/reveal.js")
+   :hook (python-mode . anaconda-mode)
+   :config (setq python-shell-interpreter "ipython")
 )
 
-(use-package htmlize
+(use-package company-anaconda
    :ensure t)
+(add-to-list 'company-backends 'company-anaconda)
 
+(use-package pyvenv
+:ensure t)
+
+(setenv "WORKON_HOME" "~/miniconda3/envs/")
+
+(use-package conda
+  :ensure t
+  :init
+  (setq conda-anaconda-home (expand-file-name "~/miniconda3"))
+  (setq conda-env-home-directory (expand-file-name "~/miniconda3")))
+#+end_src
+
+* Slime / Lisp
+
+#+begin_src emacs-lisp
+(use-package slime 
+ :ensure t
+ :config (setq inferior-lisp-program "sbcl"))
+
+(use-package slime-company
+  :ensure t
+  :after (slime company)
+  :config (setq slime-company-completion 'fuzzy
+                slime-company-after-completion 'slime-company-just-one-space)
+)
 #+end_src
